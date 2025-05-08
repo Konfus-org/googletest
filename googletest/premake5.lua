@@ -7,20 +7,21 @@ project "googletest"
     if OutputIntermediateDir == nil or OutputTargetDir == nil then
         targetdir ("Build/bin/%{prj.name}/")
         objdir    ("Build/obj/%{prj.name}/")
-
     else
-        targetdir ("../../../" .. OutputTargetDir .. "")
-        objdir    ("../../../" .. OutputIntermediateDir .. "")
+        targetdir ("../../../../" .. OutputTargetDir .. "")
+        objdir    ("../../../../" .. OutputIntermediateDir .. "")
     end
 
-    files 
+    files
     {
         "./src/gtest-all.cc",
         "./src/gtest_main.cc",
-        "./include/**.h"
+        "./include/**.h",
+        "./**.md",
+        "./**.lua"
     }
 
-    includedirs 
+    includedirs
     {
         "./",
         "./include"
@@ -28,16 +29,16 @@ project "googletest"
 
     filter "configurations:Debug"
         runtime "Debug"
-        linkoptions { "/MDd" }  -- Enable Link Time Code Generation and Incremental linking
+        buildoptions { "/MDd" }
         symbols "on"
 
     filter "configurations:Optimized"
         runtime "Release"
-        linkoptions { "/MDd" }  -- Enable Link Time Code Generation and Incremental linking
+        buildoptions { "/MDd" }
         optimize "on"
 
     filter "configurations:Release"
         runtime "Release"
         optimize "on"
-        linkoptions { "/MD" }  -- Enable Link Time Code Generation and Incremental linking
+        buildoptions { "/MD" }
         symbols "off"

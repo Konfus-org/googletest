@@ -7,20 +7,21 @@ project "googlemock"
     if OutputIntermediateDir == nil or OutputTargetDir == nil then
         targetdir ("Build/bin/%{prj.name}/")
         objdir    ("Build/obj/%{prj.name}/")
-
     else
-        targetdir ("../../../" .. OutputTargetDir .. "")
-        objdir    ("../../../" .. OutputIntermediateDir .. "")
+        targetdir ("../../../../" .. OutputTargetDir .. "")
+        objdir    ("../../../../" .. OutputIntermediateDir .. "")
     end
 
-    files 
+    files
     {
         "./src/gmock-all.cc",
         "./src/gmock_main.cc",
-        "./include/**.h"
+        "./include/**.h",
+        "./**.md",
+        "./**.lua"
     }
 
-    includedirs 
+    includedirs
     {
         "./",
         "./include",
@@ -32,19 +33,19 @@ project "googlemock"
     {
         "googletest"
     }
-
+    
     filter "configurations:Debug"
         runtime "Debug"
-        linkoptions { "/MDd" }  -- Enable Link Time Code Generation and Incremental linking
-        symbols "on"
+        buildoptions { "/MDd" } 
+        symbols "On"
 
     filter "configurations:Optimized"
         runtime "Release"
-        linkoptions { "/MDd" }  -- Enable Link Time Code Generation and Incremental linking
-        optimize "on"
+        buildoptions { "/MDd" } 
+        optimize "On"
 
     filter "configurations:Release"
         runtime "Release"
-        optimize "on"
-        linkoptions { "/MD" }  -- Enable Link Time Code Generation and Incremental linking
-        symbols "off"
+        optimize "On"
+        buildoptions { "/MD" } 
+        symbols "Off"

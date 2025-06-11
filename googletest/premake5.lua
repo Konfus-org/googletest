@@ -9,8 +9,7 @@ project "googletest"
         "./src/gtest-all.cc",
         "./src/gtest_main.cc",
         "./include/**.h",
-        "./**.md",
-        "./**.lua"
+        "./**.md"
     }
     includedirs
     {

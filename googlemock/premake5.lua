@@ -9,8 +9,7 @@ project "googlemock"
         "./src/gmock-all.cc",
         "./src/gmock_main.cc",
         "./include/**.h",
-        "./**.md",
-        "./**.lua"
+        "./**.md"
     }
     includedirs
     {
